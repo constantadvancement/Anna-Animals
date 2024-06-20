@@ -1,0 +1,42 @@
+<div class="mt-4 ml-4 mr-4">
+  <!-- Success Message -->
+  <div *ngIf="successMsg" class="alert alert-success alert-dismissible fade show mt-4 ml-2" role="alert">
+    <strong>{{ successMsg }}</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <table class="table table-bordered">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Date created</th>
+        <th scope="col">Date Updated</th>
+        <th scope="col">Delete</th>
+        <th scope="col">Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let animal of readAnimal">
+        <th scope="row">{{ animal.id }}</th>
+        <td>{{ animal.name }}</td>
+        <td>{{ animal.description }}</td>
+        <td>{{ animal.created_At }}</td>
+        <td>{{ animal.updated_At }}</td>
+        <td>
+          <button class="btn btn-danger delete-icon" (click)="deleteId(animal.id)">
+            <img src="img/trash.png" alt="Delete" width="30" height="30" />
+          </button>
+        </td>
+        <td>
+          <a [routerLink]="['/create', animal.id]" class="btn btn-success edit-icon">
+          <img src="img/pencil.png" alt="Delete" width="30" height="30" />
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

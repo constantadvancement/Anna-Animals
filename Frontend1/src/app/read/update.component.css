@@ -1,0 +1,19 @@
+.delete-icon {
+  background-color: transparent;
+  border: none;
+
+}
+
+.delete-icon:hover {
+  background-color: red;
+}
+
+.edit-icon {
+  background-color: transparent;
+  border: none;
+
+}
+
+.edit-icon:hover {
+  background-color: #03AC13;
+}
