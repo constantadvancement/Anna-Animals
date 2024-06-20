@@ -21,11 +21,20 @@ import { ActivatedRoute } from '@angular/router';
 export class CreateComponent {
   constructor(private api: ServiceService, private router: ActivatedRoute) {}
 
+  readAnimal: any;
   errMsg: any;
   successMsg: any;
   getparamid: any;
 
+  getAlldata() {
+    this.api.getAllAnimals().subscribe((res) => {
+      // console.log('Get All Animals', res);
+      this.readAnimal = res.data;
+    });
+  }
+
   ngOnInit(): void {
+    this.getAlldata();
     this.getparamid = this.router.snapshot.paramMap.get('id');
     if (this.getparamid) {
       this.api.getSingleData(this.getparamid).subscribe((res) => {
@@ -57,6 +66,8 @@ export class CreateComponent {
         console.log(res, 'Data Added Successfully');
         this.animalForm.reset();
         this.successMsg = res.message;
+        this.getAlldata();
+
       });
     } else {
       this.errMsg = 'All Fields Are Required';
@@ -73,6 +84,8 @@ export class CreateComponent {
         .subscribe((res) => {
           console.log(res, 'Data Updated Successfully');
           this.successMsg = res.message;
+          this.getAlldata();
+
         });
     } else {
       this.errMsg = 'All Fields Are Required';
